@@ -17,7 +17,7 @@ mod benches {
     use quicksort;
     use rust_quicksort;
 
-    static LENGTH: usize = 10000;
+    static LENGTH: usize = 100000;
     static SEED: [usize; 4] = [1, 2, 3, 4];
 
     #[bench]
@@ -34,5 +34,13 @@ mod benches {
 	    let mut v: Vec<isize> = rng.gen_iter::<isize>().take(LENGTH).collect();
 
         b.iter(|| quicksort::quicksort(&mut v))
+    }
+
+    #[bench]
+    fn bench_sort(b: &mut test::Bencher) {
+        let mut rng: StdRng = SeedableRng::from_seed(&SEED as &[_]);
+	    let mut v: Vec<isize> = rng.gen_iter::<isize>().take(LENGTH).collect();
+
+        b.iter(|| v.sort())
     }
 }
