@@ -1,6 +1,12 @@
 [package]
-name = "quicksort"
+name = "myquicksort"
 version = "0.1.0"
 authors = ["Jun Suzuki <jun.suzuki.japan@gmail.com>"]
 
 [dependencies]
+rand = "0.3"
+
+[dev-dependencies]
+lazy_static = "0.2.2"
+rand = "0.3"
+quicksort = "1.0.0"

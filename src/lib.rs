@@ -57,8 +57,12 @@ fn q_sort<T: Ord>(numbers: &mut [T], left: usize, right: usize) {
 }
 
 #[cfg(test)]
+extern crate rand;
+
+#[cfg(test)]
 mod tests {
     use super::*; // 外の定義にアクセスするため use
+    use rand::{Rng, SeedableRng, StdRng};
 
     #[test]
     fn test_quicksort_number(){
@@ -72,5 +76,20 @@ mod tests {
         let mut strings = ["ccc", "eee", "aaa", "ddd", "bbb", "ggg", "fff"];
         quicksort(&mut strings);
         assert_eq!(["aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg"], strings);
+    }
+
+    #[test]
+    fn test_quicksort_randam_vector(){
+        let seed: &[_] = &[1, 2, 3, 4];
+        let mut rng: StdRng = SeedableRng::from_seed(seed);
+		let len: usize = 10000;
+	    let mut v: Vec<isize> = rng.gen_iter::<isize>().take(len).collect();
+        quicksort(&mut v);
+
+        let mut prev = v[0];
+        for i in 1..v.len() {
+            assert!(prev < v[i]);
+            prev = v[i];
+        }
     }
 }
