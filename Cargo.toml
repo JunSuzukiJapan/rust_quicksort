@@ -1,12 +1,16 @@
 [package]
-name = "myquicksort"
+name = "rust_quicksort"
 version = "0.1.0"
 authors = ["Jun Suzuki <jun.suzuki.japan@gmail.com>"]
+repository = "https://github.com/JunSuzukiJapan/rust_quicksort"
+keywords = ["quicksort", "sort"]
+license-file = "MIT"
+readme = "README.md"
+description = "Quicksort library for Rust language."
+documentation = "https://github.com/JunSuzukiJapan/rust_quicksort/blob/master/README.md"
 
 [dependencies]
-rand = "0.3"
 
 [dev-dependencies]
-lazy_static = "0.2.2"
 rand = "0.3"
 quicksort = "1.0.0"
