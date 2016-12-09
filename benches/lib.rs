@@ -1,3 +1,9 @@
+// bench command:
+//
+// ```
+// $ rustup run nightly cargo bench
+// ```
+
 #![feature(test)]
 extern crate rand;
 extern crate test;
@@ -11,22 +17,21 @@ mod benches {
     use quicksort;
     use rust_quicksort;
 
+    static LENGTH: usize = 10000;
+    static SEED: [usize; 4] = [1, 2, 3, 4];
+
     #[bench]
     fn bench_rust_quicksort(b: &mut test::Bencher) {
-        let seed: &[_] = &[1, 2, 3, 4];
-        let mut rng: StdRng = SeedableRng::from_seed(seed);
-		let len: usize = 100000;
-	    let mut v: Vec<isize> = rng.gen_iter::<isize>().take(len).collect();
+        let mut rng: StdRng = SeedableRng::from_seed(&SEED as &[_]);
+	    let mut v: Vec<isize> = rng.gen_iter::<isize>().take(LENGTH).collect();
 
         b.iter(|| rust_quicksort::quicksort(&mut v))
     }
 
     #[bench]
     fn bench_quicksort(b: &mut test::Bencher) {
-        let seed: &[_] = &[1, 2, 3, 4];
-        let mut rng: StdRng = SeedableRng::from_seed(seed);
-		let len: usize = 100000;
-	    let mut v: Vec<isize> = rng.gen_iter::<isize>().take(len).collect();
+        let mut rng: StdRng = SeedableRng::from_seed(&SEED as &[_]);
+	    let mut v: Vec<isize> = rng.gen_iter::<isize>().take(LENGTH).collect();
 
         b.iter(|| quicksort::quicksort(&mut v))
     }

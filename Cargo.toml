@@ -7,7 +7,6 @@ keywords = ["quicksort", "sort"]
 license-file = "MIT"
 readme = "README.md"
 description = "Quicksort library for Rust language."
-documentation = "https://github.com/JunSuzukiJapan/rust_quicksort/blob/master/README.md"
 
 [dependencies]
 
